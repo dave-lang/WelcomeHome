@@ -1,6 +1,6 @@
 {
   "name": "welcome-home",
-  "version": "1.0",
+  "version": "2.0",
   "description": "The placeholder for Dave Lang's home on the internet",
   "repository": {
     "type": "git",
@@ -11,18 +11,25 @@
   },
   "homepage": "dave-lang.com",
   "author": "David Lang <dave@dave-lang.com>  (http://dave-lang.com/)",
-  "keywords": [],
+  "scripts": {
+    "prebuild": "rimraf .cache && rimraf dist",
+    "build": "npm run prebuild && parcel build src/*.html",
+    "dev": "parcel src/*.html --open"
+  },
+  "license": "MIT",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "dependencies": {
+    "parcel": "^2.11.0",
+    "tailwindcss": "^3.4.1"
+  },
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "cssnano": "^3.10.0",
-    "grunt": "^1.0.2",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-compress": "^1.4.3",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-postcss": "^0.9.0",
-    "grunt-sass": "^1.2.0",
-    "pixrem": "^5.0.0"
+    "autoprefixer": "^10.4.17",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^6.0.3",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.0.0",
+    "postcss-mixins": "^9.0.4",
+    "rimraf": "^5.0.5"
   }
 }
