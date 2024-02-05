@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #050F1F;
+}
+
+@layer components {
+  h1 {    
+    font-family: 'Passion One', arial;
+    @apply text-white pt-0 pb-2 text-5xl;
+
+    @media screen(md) {
+      @apply text-7xl font-normal;
+    }
+  }
+
+  h2 {
+    @apply text-3xl py-3 font-bold;
+
+    @media screen(md) {
+      @apply py-5;
+    }
+  }
+}
+
+#landing-page {
+  @apply h-screen;
+
+  background-image: url('../images/sunset_1440.jpg');
+  background-size: cover;
+
+  background-color: #050E1E;
+
+  .page-overlay {
+    content: ' ';
+    position: absolute;
+    user-select: none;
+  
+    width:100%;
+    height: 100%;
+    background-color: rgba(6, 15, 33, 0.9);
+  }
+
+  .terrible-tagline {
+    @apply text-2xl;
+
+    @media (max-width: theme(screens.md)) {
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+#what-i-do {
+  @apply pt-5 px-5 h-screen relative;
+
+  @media screen(md) {
+      padding-top: inherit;
+  }
+}
+
+.down-we-go {
+  position: absolute;
+  bottom: 2rem;
+
+  svg {
+    height: 100px;
+    width: 100px;
+
+    &:hover {
+      animation: bounce 2s infinite;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.up-we-go {
+  left: 0;
+  z-index: 100;
+  position: relative;
+
+  @media screen(md) {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  svg {
+    transform: rotate(180deg);
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.find-me-on {
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(6, 15, 33, 0.9);
+
+  img {
+    @apply pb-3;
+
+    &:hover {
+      transition-timing-function: ease-in;
+      transform: scale(1.1);
+    }
+  }
+
+  top: 0rem;
+  right: 0rem;
+  height: 5rem;
+  @apply py-5 pr-5 w-screen text-right;
+
+  @media screen(md) {
+    top: 3rem;
+    right: 1rem;
+    width: 5rem;
+    background-color: transparent;
+  }
+
+  li {
+    display: inline-block;
+    @apply pr-4;
+  }
+}

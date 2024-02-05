@@ -1,4 +1,10 @@
 node_modules
 build
 dist.zip
-css
+.parcel-cache
+.history
+.cache
+.idea
+dist
+.tailwind
+.DS_Store
