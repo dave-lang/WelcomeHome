@@ -1,0 +1,58 @@
+# This workflow will build the project and then create a release if tagged
+
+name: Build
+
+on:
+  push:
+    branches: [ "master", "release-action" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+        node-version: 18
+        
+    - run: npm install
+    - run: npm run build
+
+    - name: Compress action step
+      uses: a7ul/tar-action@v1.1.0
+      id: compress
+      with:
+        command: c
+        files: |
+          ./dist
+        outPath: dist.tar.gz
+
+    - name: Export artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: dist.tar.gz
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: dist.tar.gz
+        generate_release_notes: true
+        fail_on_unmatched_files: true
+
+    - name: Update storage container
+      uses: bacongobbler/azure-blob-storage-upload@v3.0.0
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        source_dir: dist
+        account_name: personal-resources
+        container_name: $web
+        sas_token: ${{ secrets.SiteSecretSas }}
+        #extra_args: '--pattern *.tar.gz'
+        # WARNING: this will overwrite existing blobs in your blob storage
+        overwrite: 'true'
