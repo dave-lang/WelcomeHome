@@ -44,3 +44,15 @@ jobs:
         files: dist.tar.gz
         generate_release_notes: true
         fail_on_unmatched_files: true
+
+    - name: Update storage container
+      uses: bacongobbler/azure-blob-storage-upload@v3.0.0
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        source_dir: dist
+        account_name: personal-resources
+        container_name: $web
+        sas_token: ${{ secrets.SiteSecretSas }}
+        #extra_args: '--pattern *.tar.gz'
+        # WARNING: this will overwrite existing blobs in your blob storage
+        overwrite: 'true'
