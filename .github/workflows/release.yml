@@ -4,7 +4,8 @@ name: Build
 
 on:
   push:
-    branches: [ "master", "release-action" ]
+    branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
