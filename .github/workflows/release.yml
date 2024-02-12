@@ -53,12 +53,19 @@ jobs:
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Delete old files
+      uses: azure/CLI@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        inlineScript: |
+            az storage blob delete-batch --account-name ${{ secrets.STORAGE_CONTAINER }} --source $web
+
     - name: Upload to blob storage
       uses: azure/CLI@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         inlineScript: |
-            az storage blob upload-batch --account-name davelangstatic  --auth-mode key -d '$web' -s dist/
+            az storage blob upload-batch --account-name ${{ secrets.STORAGE_CONTAINER }}  --auth-mode key -d '$web' -s dist/
 
     # Azure logout
     - name: logout
