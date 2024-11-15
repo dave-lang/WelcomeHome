@@ -7,7 +7,6 @@ Landing page for my domain - was originally Skeleton SCSS/Zepto/Grunt/Bower, now
 ### Install Global Dependencies
   
   * [Node.js](http://nodejs.org) [Installation via package manager](https://nodejs.org/en/download/package-manager/)
-  * [grunt.js](http://gruntjs.com): `[sudo] npm install -g grunt-cli`
 
 ### Get it running
 
