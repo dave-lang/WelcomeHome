@@ -1,0 +1,60 @@
+name: Take screenshots
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  shot-scraper:
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.repository.is_template }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+        node-version: 20
+  
+    - run: npm install
+
+    - uses: actions/cache@v4
+      name: Configure pip caching
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright/
+        key: ${{ runner.os }}-browsers
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Install Playwright dependencies
+      run: |
+        shot-scraper install
+
+    - name: Take shots
+      run: |
+        npx parcel src/index.html &
+        shot-scraper multi shots.yml
+
+    - name: Export artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Screenshot
+        path: shot.png
