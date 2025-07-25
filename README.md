@@ -2,6 +2,8 @@
 
 Landing page for my domain - was originally Skeleton SCSS/Zepto/Grunt/Bower, now it's Tailwind & Parcel.
 
+https://tailwindcss.com/docs/installation/framework-guides/parcel
+
 ## Getting started
 
 ### Install Global Dependencies
@@ -16,6 +18,8 @@ npm install
 
 # Run dev server - available at http://localhost:1234
 npm run dev
+# OR
+npx parcel src/index.html
 ```
 
 Run production build
