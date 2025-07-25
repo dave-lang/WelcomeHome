@@ -6,4 +6,6 @@
   output: screens/details.png
   height: 1080
   javascript: |
+    const delay = ms => new Promise(res => setTimeout(res, ms));
     window.scrollTo(0, document.body.scrollHeight);
+    await delay(5000); // Wait for animation
