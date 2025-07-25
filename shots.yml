@@ -1,9 +1,9 @@
 - url: http://localhost:1234
-  output: screens/landing.png
+  output: screens/1-landing.png
   height: 1080
 
 - url: http://localhost:1234
-  output: screens/details.png
+  output: screens/2-details.png
   height: 1080
   javascript: |
     const delay = ms => new Promise(res => setTimeout(res, ms));
