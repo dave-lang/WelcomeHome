@@ -56,5 +56,5 @@ jobs:
     - name: Export artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Screenshot
-        path: shot.png
+        name: Screenshots
+        path: screens/

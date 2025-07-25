@@ -1,9 +1,9 @@
 - url: http://localhost:1234
-  output: landing.png
+  output: screens/landing.png
   height: 1080
 
 - url: http://localhost:1234
-  output: details.png
+  output: screens/details.png
   height: 1080
   javascript: |
     window.scrollTo(0, document.body.scrollHeight);
