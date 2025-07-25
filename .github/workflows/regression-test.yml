@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   shot-scraper:
@@ -57,6 +58,7 @@ jobs:
       id: artifact-upload
       uses: actions/upload-artifact@v4
       with:
+        retention-days: 30
         name: Screenshots
         path: screens/
 
