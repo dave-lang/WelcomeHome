@@ -54,7 +54,15 @@ jobs:
         shot-scraper multi shots.yml
 
     - name: Export artifact
+      id: artifact-upload
       uses: actions/upload-artifact@v4
       with:
         name: Screenshots
         path: screens/
+
+    - name: Comment on PR with report link
+      uses: thollander/actions-comment-pull-request@v3
+      with:
+        message: |
+          ### Screenshots generated
+          View the [screenshots](${{ steps.artifact-upload.outputs.artifact-url }})
