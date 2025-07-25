@@ -1,0 +1,11 @@
+- url: http://localhost:1234
+  output: screens/1-landing.png
+  height: 1080
+
+- url: http://localhost:1234
+  output: screens/2-details.png
+  height: 1080
+  javascript: |
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    window.scrollTo(0, document.body.scrollHeight);
+    delay(5000); // Wait for animation

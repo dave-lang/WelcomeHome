@@ -26,3 +26,11 @@ Run production build
 ```bash
 npm run build
 ```
+
+## Remind myself how this ships
+
+2 Github actions - Release & screenshot changes on PR.
+
+Check changes are successful, then merge
+
+Tag with vX.X.X and release runs automatically
