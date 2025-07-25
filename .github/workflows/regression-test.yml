@@ -1,7 +1,7 @@
 name: Take screenshots
 
 on:
-  push:
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -61,8 +61,10 @@ jobs:
         path: screens/
 
     - name: Comment on PR with report link
+      if: github.event_name == 'pull_request'
       uses: thollander/actions-comment-pull-request@v3
       with:
+        comment-tag: screenshots
         message: |
           ### Screenshots generated
           View the [screenshots](${{ steps.artifact-upload.outputs.artifact-url }})
