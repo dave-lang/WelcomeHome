@@ -1,6 +1,6 @@
 {
   "name": "welcome-home",
-  "version": "2.0",
+  "version": "2.1",
   "description": "The placeholder for Dave Lang's home on the internet",
   "repository": {
     "type": "git",
@@ -20,16 +20,14 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "dependencies": {
     "parcel": "^2.15.4",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
     "autoprefixer": "^10.4.21",
-    "css-mqpacker": "^7.0.0",
     "cssnano": "^7.1.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
-    "postcss-import": "^16.1.0",
-    "postcss-mixins": "^12.0.0",
     "rimraf": "^6.0.1"
   }
 }
