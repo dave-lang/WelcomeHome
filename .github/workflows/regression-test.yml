@@ -52,6 +52,7 @@ jobs:
     - name: Take shots
       run: |
         npx parcel src/index.html &
+        sleep 5
         shot-scraper multi shots.yml
 
     - name: Export artifact
