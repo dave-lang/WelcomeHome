@@ -9,11 +9,12 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  id-token: write
+  contents: read
 
 jobs:
   build:
-
+    environment: Prod
     runs-on: ubuntu-latest
     
     steps:
@@ -50,14 +51,16 @@ jobs:
         generate_release_notes: true
         fail_on_unmatched_files: true
 
-    # Ship to Azure
-    - uses: azure/login@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    # Ship to Azure
     - name: Delete old files
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
         inlineScript: |
@@ -72,6 +75,5 @@ jobs:
 
     # Azure logout
     - name: logout
-      if: startsWith(github.ref, 'refs/tags/')
       run: |
             az logout
