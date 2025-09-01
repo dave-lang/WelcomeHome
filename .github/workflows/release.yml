@@ -60,7 +60,7 @@ jobs:
 
     # Ship to Azure
     - name: Delete old files
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
         inlineScript: |
