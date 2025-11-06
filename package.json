@@ -20,7 +20,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "dependencies": {
     "parcel": "^2.16.0",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.1.16"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.14",
