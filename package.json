@@ -23,7 +23,7 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/postcss": "^4.1.18",
     "autoprefixer": "^10.4.22",
     "cssnano": "^7.1.2",
     "postcss": "^8.5.6",
